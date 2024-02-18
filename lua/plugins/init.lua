@@ -1,0 +1,8 @@
+require"plugins.lsp"
+require"plugins.dap"
+require"plugins.none-ls"
+require"plugins.which-key"
+require"plugins.git"
+require"plugins.once_setups"
+require"plugins.languages"
+require"plugins.appearance"
