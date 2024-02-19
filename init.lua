@@ -20,16 +20,16 @@ local plugins = {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' }
   },
-	{
-		"willothy/nvim-cokeline",
-		dependencies ={
-			'nvim-lua/plenary.nvim',
-			'nvim-tree/nvim-web-devicons',
-			'stevearc/resession.nvim',
-		},
-		config = true,
-	},
-	  -- LSP
+  {
+    "willothy/nvim-cokeline",
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons',
+      'stevearc/resession.nvim',
+    },
+    config = true,
+  },
+  -- LSP
   { 'neovim/nvim-lspconfig' },
   { 'nvimtools/none-ls.nvim' },
 
@@ -39,7 +39,7 @@ local plugins = {
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
 
-	{'nvimdev/epo.nvim'},
+  { 'nvimdev/epo.nvim' },
 
   -- LSP(completion)
   {
@@ -49,7 +49,7 @@ local plugins = {
     'hrsh7th/cmp-cmdline',
     'hrsh7th/nvim-cmp',
     'saadparwaiz1/cmp_luasnip',
-		'micangl/cmp-vimtex',
+    'micangl/cmp-vimtex',
   },
 
   {
@@ -99,7 +99,7 @@ local plugins = {
   },
 
   -- DEV lua
-  { "folke/neodev.nvim",       opts = {} },
+  { "folke/neodev.nvim", opts = {} },
 
   -- File Tree
   {
@@ -125,6 +125,14 @@ local plugins = {
     dependencies = {
       'nvim-lua/plenary.nvim',
     }
+  },
+
+  { 'tpope/vim-fugitive' },
+  {
+    "kdheepak/lazygit.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
   },
   -- Fuzzy Finder
   {
