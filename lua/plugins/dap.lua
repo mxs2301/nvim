@@ -2,7 +2,20 @@ local dap = require "dap"
 
 local ui = require "dapui"
 
-ui.setup({})
+local signs = {
+  Stopped = ' ',
+  Breakpoint = ' ',
+}
+
+vim.api.nvim_set_hl(0,'DapStopped', { ctermbg=0, fg='#98c379', bg='#31353f' })
+vim.api.nvim_set_hl(0, 'DapBreakpoint', { ctermbg=0, fg='#993939', bg='#31353f' })
+
+for type, icon in pairs(signs) do
+   local hl = "Dap" .. type
+   vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl, linehl=hl})
+end
+
+ui.setup()
 
 dap.adapters.codelldb = {
   type = 'server',
