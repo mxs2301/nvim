@@ -23,7 +23,7 @@ return {
 			"hrsh7th/cmp-cmdline",
 			"rcarriga/cmp-dap",
 			"ray-x/cmp-sql",
-      "micangl/cmp-vimtex",
+			"micangl/cmp-vimtex",
 
 			"L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",
@@ -120,9 +120,9 @@ return {
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
+					{ name = "snippets" },
 					{ name = "buffer" },
 					{ name = "crates" },
-					{ name = "sql" },
 				}),
 
 				formatting = {
@@ -144,38 +144,65 @@ return {
 							luasnip = "[LuaSnip]",
 							sql = "[SQL]",
 							crates = "[Crates]",
-              vimtex = "[Vimtex]",
+							vimtex = "[Vimtex]",
 						})[entry.source.name]
 						return vim_item
 					end,
 				},
 			}
 
-			local cmd_path = {
-				mapping = cmp.mapping.preset.cmdline(),
-				sources = {
-					{ name = "buffer" },
+			local cmp_path = {
+				{
+					"/",
+					"?",
+				},
+				{
+					mapping = cmp.mapping.preset.cmdline(),
+					sources = {
+						{ name = "buffer" },
+					},
 				},
 			}
 
-			local cmd_points = {
-				mapping = cmp.mapping.preset.cmdline(),
-				sources = cmp.config.sources({
-					{ name = "path" },
-				}, {
-					{ name = "cmdline" },
-				}),
-				matching = { disallow_symbol_nonprefix_matching = false },
+			local cmp_double_quote = {
+				{ ":" },
+				{
+					mapping = cmp.mapping.preset.cmdline(),
+					sources = cmp.config.sources({
+						{ name = "path" },
+					}, {
+						{ name = "cmdline" },
+					}),
+					matching = { disallow_symbol_nonprefix_matching = false },
+				},
+			}
+
+			local cmp_dap = {
+				{ "dap-repl", "dapui_watches", "dapui_hover" },
+				{
+					sources = {
+						{ name = "dap" },
+					},
+				},
+			}
+
+			local cmp_sql = {
+				{
+					"sql",
+				},
+
+				{
+					sources = {
+						{ name = "sql" },
+					},
+				},
 			}
 
 			cmp.setup(cmp_settings)
-			cmp.setup.cmdline({ "/", "?" }, cmd_path)
-			cmp.setup.cmdline({ ":" }, cmd_points)
-			cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
-				sources = {
-					{ name = "dap" },
-				},
-			})
+			cmp.setup.cmdline(cmp_path[1], cmp_path[2])
+			cmp.setup.cmdline(cmp_double_quote[1], cmp_double_quote[2])
+			cmp.setup.filetype(cmp_dap[1], cmp_dap[2])
+			cmp.setup.filetype(cmp_sql[1], cmp_sql[2])
 		end,
 	},
 }

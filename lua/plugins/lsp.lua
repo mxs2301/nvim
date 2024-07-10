@@ -56,6 +56,7 @@ return {
       local server = {
         --'clangd',
         "lua_ls",
+        "texlab",
         "typst_lsp",
         --"scheme-langserver",
       }
