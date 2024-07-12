@@ -10,7 +10,12 @@ return {
       'MunifTanjim/nui.nvim',
       'nvim-tree/nvim-web-devicons',
       'nvim-lua/plenary.nvim',
-
+      {
+        'chrisgrieser/nvim-tinygit',
+        dependencies = {
+          'stevearc/dressing.nvim'
+        },
+      },
     },
     cmd = { 'Fugit2', 'Fugit2Diff', 'Fugit2Graph', 'Fugit2Blame' }
   },
