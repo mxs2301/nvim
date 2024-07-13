@@ -123,6 +123,7 @@ return {
           { name = "snippets" },
           { name = "buffer" },
           { name = "crates" },
+          { name = "vim-dadbod-completion" },
         }),
 
         formatting = {
@@ -145,6 +146,7 @@ return {
               sql = "[SQL]",
               crates = "[Crates]",
               vimtex = "[Vimtex]",
+              vim_dadbod_completion = "[VIMDB]",
             })[entry.source.name]
             return vim_item
           end,
