@@ -1,8 +1,5 @@
 -- Outside keymaps
 
-vim.keymap.set("n", "i", ":set norelativenumber<CR>:set number<CR>i")
-vim.keymap.set('i', '<ESC>', "<ESC><cmd>set nonumber<CR><cmd>set relativenumber<CR>")
-vim.keymap.set("t", "<C-e>", "<C-\\><C-n>")
 
 vim.opt.guifont = "FiraCode Nerd Font:14"
 vim.opt.relativenumber = true
@@ -22,6 +19,9 @@ vim.opt.autoindent = true
 
 -- UI
 
+vim.opt.showmode = false
+vim.opt.number = true
+vim.opt.relativenumber = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.cursorline = true
