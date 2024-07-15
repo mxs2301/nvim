@@ -13,6 +13,10 @@ return {
       }
       require "toggleterm".setup(opts)
     end
-  }
+  },
 
+   {
+        '2kabhishek/termim.nvim',
+        cmd = { 'Fterm', 'FTerm', 'Sterm', 'STerm', 'Vterm', 'VTerm' },
+    },
 }
