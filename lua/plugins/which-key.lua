@@ -78,7 +78,6 @@ return {
           { "<leader>wv", "<cmd>vsplit<cr>", desc = "Split vertical" },
           { "<leader>ws", "<cmd>split<cr>",  desc = "Split horizontal" },
           { "<leader>wa", "<cmd>tabnew<cr>", desc = "Create empty tab/window" },
-          { "<leader>wt", "<cmd>term<cr>",   desc = "Create new Terminal window" },
         },
 
         {
@@ -99,7 +98,12 @@ return {
           mode = "n",
           { "<leader>t",  group = "Tools" },
           { "<leader>td", ":DBUIToggle<cr>", desc = "Toggle Databaseclient" },
+          { "<leader>tt", ":FTerm<cr>",      desc = "Open Terminal" },
+          { "<leader>tv", ":VTerm<cr>",      desc = "Open vertical Terminal" },
+          { "<leader>ts", ":STerm<cr>",      desc = "Open horizontal Terminal" },
         },
+
+        { "<leader>e", "<C-\\><C-n>", desc = "Exit terminal", mode = "t" },
       }
 
       wk.add(mappings)
