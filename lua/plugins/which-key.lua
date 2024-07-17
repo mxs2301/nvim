@@ -103,7 +103,7 @@ return {
           { "<leader>ts", ":STerm<cr>",      desc = "Open horizontal Terminal" },
         },
 
-        { "<leader>e", "<C-\\><C-n>", desc = "Exit terminal", mode = "t" },
+        { "<C-e>", "<C-\\><C-n>", desc = "Exit terminal", mode = "t" },
       }
 
       wk.add(mappings)

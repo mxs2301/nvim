@@ -83,4 +83,5 @@ return {
 			require("tiny-devicons-auto-colors").setup({ colors = theme_colors })
 		end,
 	},
+
 }

@@ -13,8 +13,8 @@ return {
         completion = {
           cmp = {
             enabled = true,
-          }
-        }
+          },
+        },
       }
       require("crates").setup(opts)
     end,
@@ -22,6 +22,9 @@ return {
 
   {
     "p00f/clangd_extensions.nvim",
+  },
+  {
+    "ranjithshegde/ccls.nvim",
   },
 
   {
@@ -46,7 +49,7 @@ return {
         },
         virtual_text = {
           prefix = "󰊠 ",
-        }
+        },
       })
 
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -58,6 +61,7 @@ return {
         "lua_ls",
         "texlab",
         "typst_lsp",
+        "ccls",
         --"scheme-langserver",
       }
 
@@ -80,14 +84,15 @@ return {
           },
         },
       })
+      
 
-      lsp["clangd"].setup({
-        capabilities = capabilities,
-        on_attach = function()
-          require("clangd_extensions.inlay_hints").setup_autocmd()
-          require("clangd_extensions.inlay_hints").set_inlay_hints()
-        end,
-      })
+      -- lsp["clangd"].setup({
+      --   capabilities = capabilities,
+      --   on_attach = function()
+      --     require("clangd_extensions.inlay_hints").setup_autocmd()
+      --     require("clangd_extensions.inlay_hints").set_inlay_hints()
+      --   end,
+      -- })
     end,
   },
 }
