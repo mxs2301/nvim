@@ -31,3 +31,7 @@ vim.opt.incsearch = true
 vim.opt.hlsearch = true
 vim.opt.ignorecase = false
 vim.opt.smartcase = true
+
+
+vim.g.maplocalleader = "\\"
+vim.g.mapleader = " "
