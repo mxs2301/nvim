@@ -93,6 +93,7 @@ return {
 					mode = "n",
 					{ "<leader>g", group = "Git" },
 					{ "<leader>gc", ":Fugit2<cr>", desc = "Open Git Client" },
+					{ "<leader>gl", ":LazyGit<cr>", desc = "Open LazyGit" },
 				},
 				{
 					mode = "n",
