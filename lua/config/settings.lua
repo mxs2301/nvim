@@ -1,6 +1,5 @@
 -- Outside keymaps
 
-
 vim.opt.guifont = "FiraCode Nerd Font:14"
 vim.opt.relativenumber = true
 vim.opt.termguicolors = true
@@ -8,6 +7,8 @@ vim.opt.showtabline = 2
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.clipboard = "unnamedplus"
 vim.opt.mouse = "a"
+vim.opt.exrc = false
+vim.opt.secure = false
 
 -- Tab
 
