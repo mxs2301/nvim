@@ -7,15 +7,15 @@ return {
 			"nvim-lua/plenary.nvim",
 			"antoinemadec/FixCursorHold.nvim",
 			"nvim-treesitter/nvim-treesitter",
-      "rcasia/neotest-java",
+			"rcasia/neotest-java",
 		},
 		config = function()
 			require("neotest").setup({
-      adapters = {
-          require"rustaceanvim.neotest",
-          require"neotest-java",
-        }
-      })
+				adapters = {
+					require("rustaceanvim.neotest"),
+					require("neotest-java"),
+				},
+			})
 		end,
 	},
 }
