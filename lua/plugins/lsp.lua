@@ -62,6 +62,7 @@ return {
 				"texlab",
 				"typst_lsp",
 				"ccls",
+        "slint_lsp",
 				--"scheme-langserver",
 			}
 

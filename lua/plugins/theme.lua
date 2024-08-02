@@ -3,6 +3,15 @@ return {
 	{
 		"EdenEast/nightfox.nvim",
 	},
+	{
+		"0xstepit/flow.nvim",
+		lazy = false,
+		priority = 1000,
+	},
+
+	{
+		"akinsho/horizon.nvim",
+	},
 
 	{
 		"catppuccin/nvim",
