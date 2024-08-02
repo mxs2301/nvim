@@ -21,8 +21,9 @@ require("lazy").setup({
 -- Set theme
 
 if vim.g.neovide then
-  vim.cmd.colorscheme("duskfox")
+  vim.cmd.colorscheme("horizon")
   vim.o.guifont = "JetBrainsMono Nerd Font"
+  vim.o.background = "dark"
 else
   vim.cmd.colorscheme("catppuccin")
 end
