@@ -1,98 +1,91 @@
 return {
-	{
-		"mrcjkb/rustaceanvim",
-		version = "^4",
-		lazy = false,
-	},
+  {
+    "mrcjkb/rustaceanvim",
+    version = "^4",
+    lazy = false,
+  },
 
-	{
-		"Saecki/crates.nvim",
+  {
+    "Saecki/crates.nvim",
 
-		config = function()
-			local opts = {
-				completion = {
-					cmp = {
-						enabled = true,
-					},
-				},
-			}
-			require("crates").setup(opts)
-		end,
-	},
+    config = function()
+      local opts = {
+        completion = {
+          cmp = {
+            enabled = true,
+          },
+        },
+      }
+      require("crates").setup(opts)
+    end,
+  },
 
-	{
-		"p00f/clangd_extensions.nvim",
-	},
-	{
-		"ranjithshegde/ccls.nvim",
-	},
+  {
+    "p00f/clangd_extensions.nvim",
+  },
+  {
+    "ranjithshegde/ccls.nvim",
+  },
 
-	{
-		"mfussenegger/nvim-jdtls",
-	},
+  {
+    "mfussenegger/nvim-jdtls",
+  },
 
-	{
+  {
+    "williamboman/mason.nvim",
+    config = function()
+      require("mason").setup()
+    end,
+  },
 
-		"neovim/nvim-lspconfig",
+  {
+    "williamboman/mason-lspconfig.nvim",
+    config = function()
+      local opts = {}
+      require("mason-lspconfig").setup(opts)
 
-		config = function()
-			-- Set icons
+      require("mason-lspconfig").setup_handlers({
 
-			vim.diagnostic.config({
-				signs = {
-					text = {
-						[vim.diagnostic.severity.ERROR] = " ",
-						[vim.diagnostic.severity.WARN] = " ",
-						[vim.diagnostic.severity.HINT] = "󰠠 ",
-						[vim.diagnostic.severity.INFO] = " ",
-					},
-				},
-				virtual_text = {
-					prefix = "󰊠 ",
-				},
-			})
 
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+        function(server_name)
+          require("lspconfig")[server_name].setup({})
+        end,
+        ["rust_analyzer"] = function() end,
 
-			local lsp = require("lspconfig")
+        ["clangd"] = function()
+          require("lspconfig")["clangd"].setup({
+            capabilities = require("cmp_nvim_lsp").default_capabilities(),
+            on_attach = function()
+              require("clangd_extensions.inlay_hints").setup_autocmd()
+              require("clangd_extensions.inlay_hints").set_inlay_hints()
+            end,
+          })
+        end,
+      })
+    end,
+  },
 
-			local server = {
-				--'clangd',
-				"lua_ls",
-				"texlab",
-				"typst_lsp",
-				"ccls",
-        "slint_lsp",
-				--"scheme-langserver",
-			}
+  {
 
-			for _, value in pairs(server) do
-				lsp[value].setup({
-					capabilities = capabilities,
-				})
-			end
+    "neovim/nvim-lspconfig",
 
-			-- Place to setup server that needs more than standard settings
+    config = function()
+      -- Set icons
 
-			lsp["pylyzer"].setup({
-				capabilities = capabilities,
-				settings = {
-					python = {
-						checkOnType = true,
-						diagnostics = true,
-						inlayHints = true,
-						smartCompletion = true,
-					},
-				},
-			})
+      vim.diagnostic.config({
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = " ",
+            [vim.diagnostic.severity.WARN] = " ",
+            [vim.diagnostic.severity.HINT] = "󰠠 ",
+            [vim.diagnostic.severity.INFO] = " ",
+          },
+        },
+        virtual_text = {
+          prefix = "󰊠 ",
+        },
+      })
 
-			-- lsp["clangd"].setup({
-			--   capabilities = capabilities,
-			--   on_attach = function()
-			--     require("clangd_extensions.inlay_hints").setup_autocmd()
-			--     require("clangd_extensions.inlay_hints").set_inlay_hints()
-			--   end,
-			-- })
-		end,
-	},
+    end,
+  },
 }

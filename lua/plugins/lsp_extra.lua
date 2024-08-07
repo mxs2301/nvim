@@ -6,27 +6,34 @@ return {
       "nvimtools/none-ls-extras.nvim",
     },
     config = function()
-      local null_ls = require "null-ls"
+      local null_ls = require("null-ls")
 
       null_ls.setup({
         sources = {
-          null_ls.builtins.formatting.stylua,
-          null_ls.builtins.formatting.clang_format,
-          null_ls.builtins.formatting.black,
-          --null_ls.builtins.diagnostics.cppcheck,
-          null_ls.builtins.diagnostics.selene,
-          require"none-ls.diagnostics.cpplint",
-          require"none-ls.diagnostics.ruff",
-        }
+        },
       })
-    end
+    end,
   },
 
   {
-  "folke/trouble.nvim",
+    "zeioth/none-ls-autoload.nvim",
+    event = "BufEnter",
+    dependencies = {
+      "williamboman/mason.nvim",
+      "zeioth/none-ls-external-sources.nvim",
+    },
+
+    opts = {
+      external_sources = {
+        'none-ls-external-sources.diagnostics.cpplint'
+
+      },
+    },
+  },
+
+  {
+    "folke/trouble.nvim",
     cmd = "Trouble",
-    opts = {}
-  }
-
-
+    opts = {},
+  },
 }

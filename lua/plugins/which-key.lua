@@ -35,6 +35,7 @@ return {
 					{ "<leader>lp", "<cmd>lua vim.diagnostic.goto_prev()<cr>", desc = "Go to previous Diagnostic" },
 					{ "<leader>ln", "<cmd>lua vim.diagnostic.goto_next()<cr>", desc = "Go to next Diagnostic" },
 					{ "<leader>ll", "<cmd>Telescope diagnostics<cr>", desc = "Floating Diagnostics" },
+          {"<leader>lt", "<cmd>Trouble<cr>", desc = "Trouble Panel"},
 				},
 				{
 					mode = "n",
