@@ -1,46 +1,36 @@
 return {
 
-	{
-		"natecraddock/workspaces.nvim",
+  {
+    "natecraddock/workspaces.nvim",
 
-		config = function()
-			local opts = {
-				hooks = {
-					open = { "Telescope find_files" },
-				},
-			}
+    config = function()
+      local opts = {
+        hooks = {
+          open = { "Telescope find_files" },
+        },
+      }
 
-			require("workspaces").setup(opts)
-		end,
-	},
+      require("workspaces").setup(opts)
+    end,
+  },
 
-	{
-		"jedrzejboczar/exrc.nvim",
-		dependencies = { "neovim/nvim-lspconfig" }, -- (optional)
-		config = function()
-			local opts = {}
-			require("exrc").setup(opts)
-		end,
-	},
+  --{
+  --  "jedrzejboczar/exrc.nvim",
+  --  dependencies = { "neovim/nvim-lspconfig" }, -- (optional)
+  --  config = function()
+  --    local opts = {}
+  --    require("exrc").setup(opts)
+  --  end,
+  --},
 
-	--{
-	--  "kndndrj/nvim-projector",
-	--  dependencies = {
-	--    "MunifTanhim/nui.nvim",
-	--    "kndndrj/projector-neotest",
-	--    "kndndrj/projector-vscode",
-	--  },
+ { 
+    'brymer-meneses/project-config.nvim',
+    dependencies = {
+         'MunifTanjim/nui.nvim',
+         'nvim-lua/plenary.nvim', 
+         'nvim-treesitter/nvim-treesitter'
+    },
+    opts = {},
+} 
 
-	--  config = function()
-	--    require("projector").setup({
-	--      outputs = {
-	--        require("projector.outputs").TaskOutputBuilder:new(),
-	--        require("projector_vscode").LaunchJsonLoader:new(),
-	--        require("projector_vscode").TasksJsonLoader:new(),
-	--        require("projector.outputs").DadbodOutputBuilder:new(),
-	--        require("projector.outputs").DapOutputBuilder:new(),
-	--      },
-	--    })
-	--  end,
-	--},
 }
