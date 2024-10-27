@@ -7,7 +7,7 @@ return {
       "stevearc/dressing.nvim"
     },
     config = function()
-      require"flutter-tools".setup{}
+      require "flutter-tools".setup {}
     end
   },
 
@@ -91,6 +91,8 @@ return {
         end,
         ["rust_analyzer"] = function() end,
 
+
+
         ["clangd"] = function()
           require("lspconfig")["clangd"].setup({
             capabilities = require("cmp_nvim_lsp").default_capabilities(),
@@ -110,6 +112,12 @@ return {
 
     config = function()
       -- Set icons
+      require "lspconfig"["sourcekit"].setup({
+        capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        filetypes = {
+          "swift", "objc", "objcpp"
+        }
+      })
 
       vim.diagnostic.config({
         signs = {
