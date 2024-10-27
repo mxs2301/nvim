@@ -7,4 +7,8 @@ return {
       require("render-markdown").setup({})
     end,
   },
+
+  {
+    "jannis-baum/vivify.vim",
+  }
 }
