@@ -12,10 +12,6 @@ return {
   },
 
   {
-    "SergioRibera/cmp-dotenv",
-  },
-
-  {
 
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
@@ -23,6 +19,7 @@ return {
 
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
+      "SergioRibera/cmp-dotenv,
       --"hrsh7th/cmp-path",
       "FelipeLema/cmp-async-path",
       "hrsh7th/cmp-cmdline",
