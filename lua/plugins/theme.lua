@@ -23,7 +23,7 @@ return {
 				flavour = "frappe",
 				term_colors = true,
 				integrations = {
-				blinK_cmp = true,
+				blink_cmp = true,
 					}
 			})
 		end,
