@@ -12,6 +12,10 @@ return {
   },
 
   {
+    "SergioRibera/cmp-dotenv",
+  },
+
+  {
 
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
@@ -123,6 +127,7 @@ return {
           { name = "luasnip" },
           { name = "snippets" },
           { name = "buffer" },
+          { name = "dotenv" },
           { name = "async_path" },
           { name = "crates" },
           { name = "vim-dadbod-completion" },
