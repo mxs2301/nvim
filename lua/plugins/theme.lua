@@ -22,6 +22,9 @@ return {
 			require("catppuccin").setup({
 				flavour = "frappe",
 				term_colors = true,
+				integrations = {
+				blinK_cmp = true,
+					}
 			})
 		end,
 	},
