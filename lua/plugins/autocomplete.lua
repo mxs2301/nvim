@@ -19,7 +19,7 @@ return {
 
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
-      "SergioRibera/cmp-dotenv,
+      "SergioRibera/cmp-dotenv",
       --"hrsh7th/cmp-path",
       "FelipeLema/cmp-async-path",
       "hrsh7th/cmp-cmdline",
