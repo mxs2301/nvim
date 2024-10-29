@@ -3,10 +3,12 @@ local M = {
   {
     "vhyrro/luarocks.nvim",
     priority = 1001,
-    config = true,
     opts = {
-      rocks = {"magick"},
-    }
+      rocks = { "magick" },
+    },
+    config = function()
+      require "luarocks-nvim".setup()
+    end
   }
 
 }

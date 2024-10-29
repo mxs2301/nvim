@@ -3,7 +3,7 @@ local M = {
   {
     'saghen/blink.cmp',
     lazy = false,
-    enabled = false,
+    enabled = true,
     build = "cargo build --release",
     opts = {
       hightlight = {
