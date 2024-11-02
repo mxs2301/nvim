@@ -1,9 +1,4 @@
 return {
-  {
-    'willothy/wezterm.nvim',
-
-    config = true,
-  },
 
   {
     'akinsho/toggleterm.nvim',
