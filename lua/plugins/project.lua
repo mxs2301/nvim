@@ -23,14 +23,14 @@ return {
   --  end,
   --},
 
- { 
+  {
     'brymer-meneses/project-config.nvim',
     dependencies = {
-         'MunifTanjim/nui.nvim',
-         'nvim-lua/plenary.nvim', 
-         'nvim-treesitter/nvim-treesitter'
+      'MunifTanjim/nui.nvim',
+      'nvim-lua/plenary.nvim',
+      'nvim-treesitter/nvim-treesitter'
     },
     opts = {},
-} 
+  }
 
 }
