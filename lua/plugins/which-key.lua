@@ -47,7 +47,7 @@ return {
           { "<leader>f",  group = "File" },
           { "<leader>ff", "<cmd>Telescope find_files<cr>",   desc = "Find Files" },
           { "<leader>fb", "<cmd>Telescope file_browser<cr>", desc = "File Browser" },
-          { "<leader>fy", function() vim.cmd.Yazi() end, desc = "Open Yazi File Browser at current file"}, 
+          { "<leader>fy", function() vim.cmd.Yazi() end,     desc = "Open Yazi File Browser at current file" },
         },
         {
           mode = "n",
@@ -65,14 +65,17 @@ return {
 
         {
           mode = "n",
-          { "<leader>b",  group = "Buffer" },
-          { "<leader>bd", "<cmd>bd<cr>",                desc = "Buffer delete" },
-          { "<leader>bn", "<cmd>bn<cr>",                desc = "Buffer next" },
-          { "<leader>bp", "<cmd>bp<cr>",                desc = "Buffer Previous" },
-          { "<leader>bl", "<cmd>Telescope buffers<cr>", desc = "Buffer list" },
-          { "<leader>bw", "<cmd>w<cr>",                 desc = "Buffer write" },
-          { "<leader>ba", ":badd",                      desc = "Buffer add (followed by new Buffername)" },
-          { "<leader>bf", ":bd!<cr>",                   desc = "Buffer kill" },
+          { "<leader>b",   group = "Buffer" },
+          { "<leader>bd",  "<cmd>bd<cr>",                               desc = "Buffer delete" },
+          { "<leader>bn",  "<cmd>bn<cr>",                               desc = "Buffer next" },
+          { "<leader>bp",  "<cmd>bp<cr>",                               desc = "Buffer Previous" },
+          { "<leader>bl",  "<cmd>Telescope buffers<cr>",                desc = "Buffer list" },
+          { "<leader>bw",  "<cmd>w<cr>",                                desc = "Buffer write" },
+          { "<leader>ba",  ":badd",                                     desc = "Buffer add (followed by new Buffername)" },
+          { "<leader>bf",  ":bd!<cr>",                                  desc = "Buffer kill" },
+          { "<leader>bs",  group = "Buffer Sessions" },
+          { "<leader>bss", function() vim.cmd.Autosession("search") end, desc = "Search for specific Buffer Session" },
+          { "<leader>bsd", function() vim.cmd.Autosession("delete") end, desc = "Delete specific Buffer Session" },
         },
 
         {
@@ -99,9 +102,9 @@ return {
         {
           mode = "n",
           { "<leader>g",  group = "Git" },
-          { "<leader>gc", ":Fugit2<cr>",  desc = "Open Git Client" },
-          { "<leader>gl", ":LazyGit<cr>", desc = "Open LazyGit" },
-      {"<leader>gn", function () vim.cmd.Neogit() end, desc = "Open Neogit"},
+          { "<leader>gc", ":Fugit2<cr>",                   desc = "Open Git Client" },
+          { "<leader>gl", ":LazyGit<cr>",                  desc = "Open LazyGit" },
+          { "<leader>gn", function() vim.cmd.Neogit() end, desc = "Open Neogit" },
         },
         {
           mode = "n",
