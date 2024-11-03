@@ -47,6 +47,7 @@ return {
           { "<leader>f",  group = "File" },
           { "<leader>ff", "<cmd>Telescope find_files<cr>",   desc = "Find Files" },
           { "<leader>fb", "<cmd>Telescope file_browser<cr>", desc = "File Browser" },
+          { "<leader>fy", function() vim.cmd.Yazi() end, desc = "Open Yazi File Browser at current file"}, 
         },
         {
           mode = "n",
