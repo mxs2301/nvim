@@ -23,6 +23,7 @@ return {
         -- LSP configuration
         server = {
           on_attach = function(client, bufnr)
+            vim.lsp.inlay_hint.enable(true, {0})
             -- you can also put keymaps in here
           end,
           default_settings = {
@@ -60,7 +61,7 @@ return {
   },
 
   {
-    "p00f/clangd_extensions.nvim",
+    url = "https://git.sr.ht/~p00f/clangd_extensions.nvim",
   },
   {
     "ranjithshegde/ccls.nvim",
@@ -87,10 +88,32 @@ return {
 
 
         function(server_name)
-          require("lspconfig")[server_name].setup({})
+          require("lspconfig")[server_name].setup({
+            capabilities = require "cmp_nvim_lsp".default_capabilities(),
+            on_attach = function()
+              if vim.lsp.inlay_hint then
+                vim.lsp.inlay_hint.enable(true, { 0 })
+              end
+            end
+          })
         end,
         ["rust_analyzer"] = function() end,
 
+        ["lua_ls"] = function()
+          require "lspconfig"["lua_ls"].setup {
+            capabilities = require "cmp_nvim_lsp".default_capabilities(),
+            on_attach = function () 
+                vim.lsp.inlay_hint.enable(true, { 0 })
+            end,
+            settings = {
+              Lua = {
+                hint = {
+                  enable = true
+                },
+              }
+            }
+          }
+        end,
 
 
         ["clangd"] = function()
