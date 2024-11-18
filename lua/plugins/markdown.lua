@@ -14,6 +14,7 @@ return {
 
   {
     "3rd/image.nvim",
+    enabled = false,
     config = function()
       local opts = {
         backend = "kitty",
@@ -28,6 +29,7 @@ return {
   },
   {
     "3rd/diagram.nvim",
+    enabled = false,
     dependencies = {
       "3rd/image.nvim",
     },
