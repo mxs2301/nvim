@@ -20,4 +20,8 @@ function M.get_current_buffer()
   return x
 end
 
+function M.toggle_linenumber()
+  vim.o.relativenumber = not vim.o.relativenumber
+end
+
 return M
