@@ -1,4 +1,4 @@
 -- Starting point of Neovim config
 require"config.settings"
-require"config.functions"
+require"commands"
 require"config.lazy"
