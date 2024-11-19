@@ -47,7 +47,15 @@ return {
   {
     "max397574/better-escape.nvim",
     config = function()
-    --  require("better_escape").setup()
+      require("better_escape").setup()
     end,
   },
+  {
+    "tiagovla/scope.nvim",
+    config = function()
+      require "scope".setup({})
+    end
+  }
+
+
 }
