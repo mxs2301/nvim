@@ -43,6 +43,16 @@ return {
           { "<leader>lt", "<cmd>Trouble<cr>",                                                            desc = "Trouble Panel" },
           { "<leader>lh", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, desc = "Toggle Inlay Hints" },
         },
+
+        {
+          mode = "n",
+          {
+            "<leader>m",
+            group = "Miscellaneous",
+          },
+          { "<leader>ml", function() vim.cmd.ToggleLineNumber() end, desc = "Toggle Linenumber" }
+        },
+
         {
           mode = "n",
           { "<leader>f",  group = "File" },
@@ -90,7 +100,29 @@ return {
           { "<leader>wc", "<Plug>(WormholeCloseLabels)", desc = "Wormhole Close Labels" },
           { "<leader>wv", "<cmd>vsplit<cr>",             desc = "Split vertical" },
           { "<leader>ws", "<cmd>split<cr>",              desc = "Split horizontal" },
-          { "<leader>wa", "<cmd>tabnew<cr>",             desc = "Create empty tab/window" },
+          {
+            "<leader>wa",
+            function()
+              vim.ui.input({ prompt = "Please enter Tabname" }, function()
+                vim.cmd.tabnew(input)
+              end)
+            end,
+            desc = "Create tab"
+          },
+          { "<leader>wn", "<cmd>tabnext<cr>",           desc = "Next Tab" },
+          { "<leader>wp", "<cmd>tabprevious<cr>",       desc = "Previous Tab" },
+          { "<leader>wt", "<cmd>Tabby jump_to_tab<cr>", desc = "Jump to specific Tab" },
+          { "<leader>wd", "<cmd>tabclose<cr>",          desc = "Close Tab" },
+          {
+            "<leader>wr",
+            function()
+              vim.ui.input({ prompt = "Enter new name for tab" }, function(input)
+                vim.cmd.Tabby({ "rename_tab", input })
+              end)
+            end,
+            desc = "Rename tab"
+          }
+
         },
 
         {
