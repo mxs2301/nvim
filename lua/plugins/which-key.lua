@@ -76,13 +76,21 @@ return {
 
         {
           mode = "n",
-          { "<leader>b",   group = "Buffer" },
-          { "<leader>bd",  "<cmd>bd<cr>",                                desc = "Buffer delete" },
-          { "<leader>bn",  "<cmd>bn<cr>",                                desc = "Buffer next" },
-          { "<leader>bp",  "<cmd>bp<cr>",                                desc = "Buffer Previous" },
-          { "<leader>bl",  "<cmd>Telescope buffers<cr>",                 desc = "Buffer list" },
-          { "<leader>bw",  "<cmd>w<cr>",                                 desc = "Buffer write" },
-          { "<leader>ba",  ":badd",                                      desc = "Buffer add (followed by new Buffername)" },
+          { "<leader>b",  group = "Buffer" },
+          { "<leader>bd", "<cmd>bd<cr>",                desc = "Buffer delete" },
+          { "<leader>bn", "<cmd>bn<cr>",                desc = "Buffer next" },
+          { "<leader>bp", "<cmd>bp<cr>",                desc = "Buffer Previous" },
+          { "<leader>bl", "<cmd>Telescope buffers<cr>", desc = "Buffer list" },
+          { "<leader>bw", "<cmd>w<cr>",                 desc = "Buffer write" },
+          {
+            "<leader>ba",
+            function()
+              vim.ui.input({ prompt = "Buffername" }, function(input)
+                vim.cmd.badd(input)
+              end)
+            end,
+            desc = "Buffer add (followed by new Buffername)"
+          },
           { "<leader>bf",  ":bd!<cr>",                                   desc = "Buffer kill" },
           { "<leader>bs",  group = "Buffer Sessions" },
           { "<leader>bss", function() vim.cmd.Autosession("search") end, desc = "Search for specific Buffer Session" },
