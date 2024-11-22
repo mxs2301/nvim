@@ -14,6 +14,7 @@ return {
           { "<leader>q",  group = "Closing/Quitting" },
           { "<leader>qf", "<cmd>q!<cr>",             desc = "Quit forcefully" },
           { "<leader>qq", "<cmd>q<cr>",              desc = "Quit" },
+          { "<leader>qa", "<cmd>qa<cr>",             desc = "Quit all" },
         },
 
         {
@@ -91,10 +92,12 @@ return {
             end,
             desc = "Buffer add (followed by new Buffername)"
           },
-          { "<leader>bf",  ":bd!<cr>",                                   desc = "Buffer kill" },
-          { "<leader>bs",  group = "Buffer Sessions" },
-          { "<leader>bss", function() vim.cmd.Autosession("search") end, desc = "Search for specific Buffer Session" },
-          { "<leader>bsd", function() vim.cmd.Autosession("delete") end, desc = "Delete specific Buffer Session" },
+          { "<leader>bf",  ":bd!<cr>",                                       desc = "Buffer kill" },
+          { "<leader>bs",  group = "Sessions" },
+          { "<leader>bss", function() require "nvim-possession".list() end,  desc = "Search for specific Session" },
+          { "<leader>bsd", function() require "nvim-possession".delete() end, desc = "Delete specific Session" },
+          { "<leader>bsn", function() require "nvim-possession".new() end,   desc = "Save new Session" },
+          { "<leader>bsu", function() require "nvim-possession".update() end, desc = "Update Session entry" }
         },
 
         {
@@ -111,7 +114,7 @@ return {
           {
             "<leader>wa",
             function()
-              vim.ui.input({ prompt = "Please enter Tabname" }, function()
+              vim.ui.input({ prompt = "Please enter Tabname" }, function(input)
                 vim.cmd.tabnew(input)
               end)
             end,
