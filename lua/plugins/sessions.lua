@@ -11,7 +11,7 @@ local M = {
         autoload = true,
         autoswap = {
           enable = true
-      }
+      },
       require "nvim-possession".setup(opts)
     end
   }
