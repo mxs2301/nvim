@@ -15,7 +15,7 @@ local M = {
       }
       require "nvim-possession".setup(opts)
     end,
-  }
+  },
 
 }
 
