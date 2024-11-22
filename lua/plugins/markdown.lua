@@ -13,6 +13,16 @@ return {
   },
 
   {
+    "axieax/urlview.nvim",
+    opts = {
+      default_picker = "telescope"
+    },
+    config = function (_, opts)
+      require"urlview".setup(opts)
+    end
+  },
+
+  {
     "3rd/image.nvim",
     enabled = false,
     config = function()
