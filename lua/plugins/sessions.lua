@@ -1,15 +1,19 @@
 local M = {
-  {
-    'rmagatti/auto-session',
-    lazy = false,
 
-    ---enables autocomplete for opts
-    ---@module "auto-session"
-    ---@type AutoSession.Config
-    opts = {
-      suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
-      -- log_level = 'debug',
-    }
+  {
+    "gennaro-tedesco/nvim-possession",
+    dependencies = {
+      "ibhagwan/fzf-lua",
+    },
+    config = function()
+      local opts = {
+        autosave = true,
+        autoload = true,
+        autoswap = {
+          enable = true
+      }
+      require "nvim-possession".setup(opts)
+    end
   }
 
 }
