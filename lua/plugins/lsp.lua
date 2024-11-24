@@ -23,7 +23,7 @@ return {
         -- LSP configuration
         server = {
           on_attach = function(client, bufnr)
-            vim.lsp.inlay_hint.enable(true, {0})
+            vim.lsp.inlay_hint.enable(true, { 0 })
             -- you can also put keymaps in here
           end,
           default_settings = {
@@ -102,8 +102,8 @@ return {
         ["lua_ls"] = function()
           require "lspconfig"["lua_ls"].setup {
             capabilities = require "cmp_nvim_lsp".default_capabilities(),
-            on_attach = function () 
-                vim.lsp.inlay_hint.enable(true, { 0 })
+            on_attach = function()
+              vim.lsp.inlay_hint.enable(true, { 0 })
             end,
             settings = {
               Lua = {
@@ -132,6 +132,9 @@ return {
   {
 
     "neovim/nvim-lspconfig",
+    dependencies = {
+      "netmute/ctags-lsp.nvim",
+    },
 
     config = function()
       -- Set icons
@@ -139,6 +142,13 @@ return {
         capabilities = require("cmp_nvim_lsp").default_capabilities(),
         filetypes = {
           "swift", "objc", "objcpp"
+        }
+      })
+      require "lspconfig"["ctags_lsp"].setup({
+        capabilities = require "cmp_nvim_lsp".default_capabilities(),
+        filetypes = {
+          "lua",
+          "rust",
         }
       })
 
