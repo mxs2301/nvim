@@ -96,7 +96,7 @@ return {
           { "<leader>bs",  group = "Sessions" },
           { "<leader>bss", function() vim.cmd.Telescope("persisted") end, desc = "Search for specific Session" },
           { "<leader>bsd", function() vim.cmd.SessionDelete() end,        desc = "Delete current Session" },
-          { "<leader>bsu", function() vim.cmd.SessionSave() end,          desc = "Update Session entry" }
+          { "<leader>bsu", function() vim.cmd.SessionSave() end,          desc = "Update Session entry" },
           { "<leader>bsn", function() vim.cmd.SessionStart() end,         desc = "Start new Session" }
         },
 
