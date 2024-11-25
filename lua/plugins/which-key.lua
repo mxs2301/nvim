@@ -92,12 +92,12 @@ return {
             end,
             desc = "Buffer add (followed by new Buffername)"
           },
-          { "<leader>bf",  ":bd!<cr>",                                       desc = "Buffer kill" },
+          { "<leader>bf",  ":bd!<cr>",                                    desc = "Buffer kill" },
           { "<leader>bs",  group = "Sessions" },
-          { "<leader>bss", function() require "nvim-possession".list() end,  desc = "Search for specific Session" },
-          { "<leader>bsd", function() require "nvim-possession".delete() end, desc = "Delete specific Session" },
-          { "<leader>bsn", function() require "nvim-possession".new() end,   desc = "Save new Session" },
-          { "<leader>bsu", function() require "nvim-possession".update() end, desc = "Update Session entry" }
+          { "<leader>bss", function() vim.cmd.Telescope("persisted") end, desc = "Search for specific Session" },
+          { "<leader>bsd", function() vim.cmd.SessionDelete() end,        desc = "Delete current Session" },
+          { "<leader>bsu", function() vim.cmd.SessionSave() end,          desc = "Update Session entry" }
+          { "<leader>bsn", function() vim.cmd.SessionStart() end,         desc = "Start new Session" }
         },
 
         {
