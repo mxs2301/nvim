@@ -45,12 +45,12 @@ return {
 
       dap.adapters.lldb = {
         type = 'executable',
-        command = '/nix/store/8f1ljwxw084nsxf1bh4262cbs80cazls-profile/bin/lldb-dap',
+        command = '/usr/bin/lldb-dap-19',
         name = 'lldb'
       }
       dap.adapters.gdb = {
         type = 'executable',
-        command = '/nix/store/41bv0zwjfa15rfcq6h1dqhjsawmzcr6b-profile/bin/gdb',
+        command = '/usr/bin/gdb',
         args = { "-i", "dap" }
       }
 

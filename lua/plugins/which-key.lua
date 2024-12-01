@@ -64,15 +64,15 @@ return {
         {
           mode = "n",
           { "<leader>d",  group = "Debugging" },
-          { "<leader>db", "<cmd>DapToggleBreakpoint<cr>", desc = "Toggle Breakpoint" },
-          { "<leader>dc", "<cmd>DapContinue<cr>",         desc = "Start Debugging" },
-          { "<leader>dt", "<cmd>DapTerminate<cr>",        desc = "Stop Debugging" },
-          { "<leader>du", "<cmd>DapUiToggle<cr>",         desc = "Toggle UI" },
-          { "<leader>do", "<cmd>DapStepOver<cr>",         desc = "Step Over" },
-          { "<leader>dO", "<cmd>DapStepOut<cr>",          desc = "Step Out" },
-          { "<leader>di", "<cmd>DapStepInto<cr>",         desc = "Step Into" },
-          { "<leader>de", "<cmd>DapEval<cr>",             desc = "Evaluate current", mode = "v" },
-          { "<leader>dr", "<cmd>DapToggleRepl<cr>",       desc = "Toggle Repl" },
+          { "<leader>db", "<cmd>DapToggleBreakpoint<cr>",         desc = "Toggle Breakpoint" },
+          { "<leader>dc", "<cmd>DapContinue<cr>",                 desc = "Start Debugging" },
+          { "<leader>dt", "<cmd>DapTerminate<cr>",                desc = "Stop Debugging" },
+          { "<leader>du", function() require "dapui".toggle() end, desc = "Toggle UI" },
+          { "<leader>do", "<cmd>DapStepOver<cr>",                 desc = "Step Over" },
+          { "<leader>dO", "<cmd>DapStepOut<cr>",                  desc = "Step Out" },
+          { "<leader>di", "<cmd>DapStepInto<cr>",                 desc = "Step Into" },
+          { "<leader>de", "<cmd>DapEval<cr>",                     desc = "Evaluate current", mode = "v" },
+          { "<leader>dr", "<cmd>DapToggleRepl<cr>",               desc = "Toggle Repl" },
         },
 
         {
@@ -92,12 +92,21 @@ return {
             end,
             desc = "Buffer add (followed by new Buffername)"
           },
+<<<<<<< HEAD
           { "<leader>bf",  ":bd!<cr>",                                    desc = "Buffer kill" },
           { "<leader>bs",  group = "Sessions" },
           { "<leader>bss", function() vim.cmd.Telescope("persisted") end, desc = "Search for specific Session" },
           { "<leader>bsd", function() vim.cmd.SessionDelete() end,        desc = "Delete current Session" },
           { "<leader>bsu", function() vim.cmd.SessionSave() end,          desc = "Update Session entry" },
           { "<leader>bsn", function() vim.cmd.SessionStart() end,         desc = "Start new Session" }
+=======
+          { "<leader>bf",  ":bd!<cr>",                                        desc = "Buffer kill" },
+          { "<leader>bs",  group = "Sessions" },
+          { "<leader>bss", function() require "nvim-possession".list() end,   desc = "Search for specific Session" },
+          { "<leader>bsd", function() require "nvim-possession".delete() end, desc = "Delete specific Session" },
+          { "<leader>bsn", function() require "nvim-possession".new() end,    desc = "Save new Session" },
+          { "<leader>bsu", function() require "nvim-possession".update() end, desc = "Update Session entry" }
+>>>>>>> a28490a (Fixed lldb path and call to DapUI)
         },
 
         {
