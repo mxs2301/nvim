@@ -67,4 +67,8 @@ return {
   {
     "jjcxdev/gitsignal",
   },
+
+  {
+    "tpope/vim-fugitive"
+  }
 }
