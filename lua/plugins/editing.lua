@@ -55,7 +55,22 @@ return {
     config = function()
       require "scope".setup({})
     end
-  }
+  },
 
+  {
+    "aaronik/treewalker.nvim",
+    opts = {
+      highlight = true,
+    }
+  },
+
+  {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    opts = {
+
+    }
+  }
 
 }
