@@ -9,6 +9,15 @@ return {
     config = function()
       local wk = require("which-key")
       local mappings = {
+
+
+        {
+          mode = "n",
+          { "<C-j>", "<cmd>Treewalker Down<cr>",  desc = "Jump down one Treesitter object" },
+          { "<C-k>", "<cmd>Treewalker Up<cr>",    desc = "Jump Up one Treesitter object" },
+          { "<C-l>", "<cmd>Treewalker Left<cr>",  desc = "Jump left one Treesitter object" },
+          { "<C-h>", "<cmd>Treewalker Right<cr>", desc = "Jump right one Treesitter object" },
+        },
         {
           mode = "n",
           { "<leader>q",  group = "Closing/Quitting" },
@@ -78,11 +87,12 @@ return {
         {
           mode = "n",
           { "<leader>b",  group = "Buffer" },
-          { "<leader>bd", "<cmd>bd<cr>",                desc = "Buffer delete" },
-          { "<leader>bn", "<cmd>bn<cr>",                desc = "Buffer next" },
-          { "<leader>bp", "<cmd>bp<cr>",                desc = "Buffer Previous" },
-          { "<leader>bl", "<cmd>Telescope buffers<cr>", desc = "Buffer list" },
-          { "<leader>bw", "<cmd>w<cr>",                 desc = "Buffer write" },
+          { "<leader>bd", function() Snacks.bufdelete() end,    desc = "Buffer delete" },
+          { "<leader>bq", function() Snacks.bufdelete.all() end, desc = "Buffer delete all" },
+          { "<leader>bn", "<cmd>bn<cr>",                        desc = "Buffer next" },
+          { "<leader>bp", "<cmd>bp<cr>",                        desc = "Buffer Previous" },
+          { "<leader>bl", "<cmd>Telescope buffers<cr>",         desc = "Buffer list" },
+          { "<leader>bw", "<cmd>w<cr>",                         desc = "Buffer write" },
           {
             "<leader>ba",
             function()
