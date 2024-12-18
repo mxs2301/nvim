@@ -89,7 +89,8 @@ return {
 
         function(server_name)
           require("lspconfig")[server_name].setup({
-            capabilities = require "cmp_nvim_lsp".default_capabilities(),
+            capabilities = require "blink.cmp".get_lsp_capabilities(),
+            -- capabilities = require "cmp_nvim_lsp".default_capabilities(),
             on_attach = function()
               if vim.lsp.inlay_hint then
                 vim.lsp.inlay_hint.enable(true, { 0 })
@@ -101,7 +102,8 @@ return {
 
         ["lua_ls"] = function()
           require "lspconfig"["lua_ls"].setup {
-            capabilities = require "cmp_nvim_lsp".default_capabilities(),
+            capabilities = require "blink.cmp".get_lsp_capabilities(),
+            -- capabilities = require "cmp_nvim_lsp".default_capabilities(),
             on_attach = function()
               vim.lsp.inlay_hint.enable(true, { 0 })
             end,
@@ -118,7 +120,8 @@ return {
 
         ["clangd"] = function()
           require("lspconfig")["clangd"].setup({
-            capabilities = require("cmp_nvim_lsp").default_capabilities(),
+            capabilities = require "blink.cmp".get_lsp_capabilities(),
+            -- capabilities = require("cmp_nvim_lsp").default_capabilities(),
             on_attach = function()
               require("clangd_extensions.inlay_hints").setup_autocmd()
               require("clangd_extensions.inlay_hints").set_inlay_hints()
@@ -133,13 +136,15 @@ return {
 
     "neovim/nvim-lspconfig",
     dependencies = {
-      "netmute/ctags-lsp.nvim",
+      "saghen/blink.cmp"
     },
 
     config = function()
       -- Set icons
       require "lspconfig"["sourcekit"].setup({
-       capabilities = require("cmp_nvim_lsp").default_capabilities(),
+
+        capabilities = require "blink.cmp".get_lsp_capabilities(),
+        -- capabilities = require("cmp_nvim_lsp").default_capabilities(),
         filetypes = {
           "swift", "objc", "objcpp"
         }
