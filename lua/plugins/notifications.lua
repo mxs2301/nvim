@@ -25,18 +25,21 @@ local M = {
           inc_rename = false,           -- enables an input dialog for inc-rename.nvim
           lsp_doc_border = false,       -- add a border to hover docs and signature help
         },
+        cmdline = {
+          view = "cmdline"
+        }
       })
     end
   },
 
   -- In case noice stops working
-  -- Mini works aswell 
+  -- Mini works aswell
   {
     "echasnovski/mini.nvim",
-    enabled = false,
-    config = function ()
+    enabled = true,
+    config = function()
       local opts = {}
-      require"mini.notify".setup(opts)
+      require "mini.notify".setup(opts)
     end
   }
 }
