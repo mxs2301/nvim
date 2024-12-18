@@ -139,16 +139,9 @@ return {
     config = function()
       -- Set icons
       require "lspconfig"["sourcekit"].setup({
-        capabilities = require("cmp_nvim_lsp").default_capabilities(),
+       capabilities = require("cmp_nvim_lsp").default_capabilities(),
         filetypes = {
           "swift", "objc", "objcpp"
-        }
-      })
-      require "lspconfig"["ctags_lsp"].setup({
-        capabilities = require "cmp_nvim_lsp".default_capabilities(),
-        filetypes = {
-          "lua",
-          "rust",
         }
       })
 
