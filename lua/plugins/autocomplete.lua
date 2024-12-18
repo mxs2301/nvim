@@ -15,12 +15,12 @@ return {
 
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
+    enabled = true,
     dependencies = {
 
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "SergioRibera/cmp-dotenv",
-      --"hrsh7th/cmp-path",
       "FelipeLema/cmp-async-path",
       "hrsh7th/cmp-cmdline",
       "rcarriga/cmp-dap",
@@ -35,7 +35,6 @@ return {
     config = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")
-      --local lspkind = require("lspkind")
       local icons = {
         Text = "󱀍  ",
         Method = "󰡱  ",
@@ -177,7 +176,6 @@ return {
         {
           mapping = cmp.mapping.preset.cmdline(),
           sources = cmp.config.sources({
-            --{ name = "path" },
             { name = "async_path" },
           }, {
             { name = "cmdline" },
