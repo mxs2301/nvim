@@ -34,22 +34,22 @@ return {
         {
           mode = "n",
           { "<leader>l",  group = "LSP" },
-          { "<leader>ld", "<cmd>Telescope lsp_definitions<cr>",     desc = "Go to Definition" },
-          { "<leader>lD", "<cmd>lua vim.lsp.buf.declaration()<cr>", desc = "Go to Declaration" },
-          { "<leader>li", "<cmd>Telescope lsp_implementations<cr>", desc = "List implementations" },
-          { "<leader>lr", "<cmd>Telescope lsp_references<cr>",      desc = "List References" },
+          { "<leader>ld", function() vim.cmd.FzfLua("lsp_definitions") end,     desc = "Go to Definition" },
+          { "<leader>lD", function() vim.cmd.FzfLua("declaration") end,         desc = "Go to Declaration" },
+          { "<leader>li", function() vim.cmd.FzfLua("lsp_implementations") end, desc = "List implementations" },
+          { "<leader>lr", function() vim.cmd.FzfLua("lsp_references") end,      desc = "List References" },
           {
             "<leader>ls",
             "<cmd>lua vim.lsp.buf.signature_help()<cr>",
             desc = "Display Signature Information",
           },
-          { "<leader>lS", "<cmd>Telescope lsp_document_symbols<cr>",                                     desc = "Document Symbols" },
+          { "<leader>lS", function() vim.cmd.FzfLua("lsp_document_symbols") end,                         desc = "Document Symbols" },
           { "<leader>lR", "<cmd>lua vim.lsp.buf.rename()<cr>",                                           desc = "Rename Reference" },
           { "<leader>lf", "<cmd>lua vim.lsp.buf.format()<cr>",                                           desc = "Format Buffer" },
           { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>",                                      desc = "Code Actions" },
           { "<leader>lp", "<cmd>lua vim.diagnostic.goto_prev()<cr>",                                     desc = "Go to previous Diagnostic" },
           { "<leader>ln", "<cmd>lua vim.diagnostic.goto_next()<cr>",                                     desc = "Go to next Diagnostic" },
-          { "<leader>ll", "<cmd>Telescope diagnostics<cr>",                                              desc = "Floating Diagnostics" },
+          { "<leader>ll", function() vim.cmd.FzfLua("diagnostics_documents") end,                        desc = "Floating Diagnostics" },
           { "<leader>lt", "<cmd>Trouble<cr>",                                                            desc = "Trouble Panel" },
           { "<leader>lh", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, desc = "Toggle Inlay Hints" },
         },
@@ -66,9 +66,8 @@ return {
         {
           mode = "n",
           { "<leader>f",  group = "File" },
-          { "<leader>ff", "<cmd>Telescope find_files<cr>",   desc = "Find Files" },
-          { "<leader>fb", "<cmd>Telescope file_browser<cr>", desc = "File Browser" },
-          { "<leader>fy", function() vim.cmd.Yazi() end,     desc = "Open Yazi File Browser at current file" },
+          { "<leader>ff", function() vim.cmd.FzfLua("files") end,   desc = "Find Files" },
+          { "<leader>ft", function() vim.cmd.Neotree("toggle") end, desc = "File Browser" },
         },
         {
           mode = "n",
@@ -87,12 +86,12 @@ return {
         {
           mode = "n",
           { "<leader>b",  group = "Buffer" },
-          { "<leader>bd", function() Snacks.bufdelete() end,    desc = "Buffer delete" },
-          { "<leader>bq", function() Snacks.bufdelete.all() end, desc = "Buffer delete all" },
-          { "<leader>bn", "<cmd>bn<cr>",                        desc = "Buffer next" },
-          { "<leader>bp", "<cmd>bp<cr>",                        desc = "Buffer Previous" },
-          { "<leader>bl", "<cmd>Telescope buffers<cr>",         desc = "Buffer list" },
-          { "<leader>bw", "<cmd>w<cr>",                         desc = "Buffer write" },
+          { "<leader>bd", function() Snacks.bufdelete() end,        desc = "Buffer delete" },
+          { "<leader>bq", function() Snacks.bufdelete.all() end,    desc = "Buffer delete all" },
+          { "<leader>bn", "<cmd>bn<cr>",                            desc = "Buffer next" },
+          { "<leader>bp", "<cmd>bp<cr>",                            desc = "Buffer Previous" },
+          { "<leader>bl", function() vim.cmd.FzfLua("buffers") end, desc = "Buffer list" },
+          { "<leader>bw", "<cmd>w<cr>",                             desc = "Buffer write" },
           {
             "<leader>ba",
             function()
@@ -103,12 +102,12 @@ return {
             desc = "Buffer add (followed by new Buffername)"
           },
 
-          { "<leader>bf",  ":bd!<cr>",                                    desc = "Buffer kill" },
+          { "<leader>bf",  ":bd!<cr>",                             desc = "Buffer kill" },
           { "<leader>bs",  group = "Sessions" },
-          { "<leader>bss", function() vim.cmd.Telescope("persisted") end, desc = "Search for specific Session" },
-          { "<leader>bsd", function() vim.cmd.SessionDelete() end,        desc = "Delete current Session" },
-          { "<leader>bsu", function() vim.cmd.SessionSave() end,          desc = "Update Session entry" },
-          { "<leader>bsn", function() vim.cmd.SessionStart() end,         desc = "Start new Session" }
+          { "<leader>bss", function() vim.cmd.SessionSelect() end, desc = "Search for specific Session" },
+          { "<leader>bsd", function() vim.cmd.SessionDelete() end, desc = "Delete current Session" },
+          { "<leader>bsu", function() vim.cmd.SessionSave() end,   desc = "Update Session entry" },
+          { "<leader>bsn", function() vim.cmd.SessionStart() end,  desc = "Start new Session" }
         },
 
         {
