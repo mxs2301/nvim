@@ -6,6 +6,7 @@ local M = {
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
+      'echasnovski/mini.notify'
     },
     config = function()
       require("noice").setup({
@@ -16,6 +17,12 @@ local M = {
             ["vim.lsp.util.stylize_markdown"] = true,
             ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
           },
+
+
+          progress = {
+            enabled = true,
+            view = "mini",
+          }
         },
         -- you can enable a preset for easier configuration
         presets = {
@@ -25,9 +32,8 @@ local M = {
           inc_rename = false,           -- enables an input dialog for inc-rename.nvim
           lsp_doc_border = false,       -- add a border to hover docs and signature help
         },
-        cmdline = {
-          view = "cmdline"
-        }
+
+
       })
     end
   },
@@ -35,8 +41,8 @@ local M = {
   -- In case noice stops working
   -- Mini works aswell
   {
-    "echasnovski/mini.nvim",
-    enabled = true,
+    "echasnovski/mini.notify",
+    enabled = false,
     config = function()
       local opts = {}
       require "mini.notify".setup(opts)
