@@ -1,15 +1,16 @@
 local M = {
 
   {
-    "olimorris/persisted.nvim",
+    'rmagatti/auto-session',
     lazy = false,
+
+    ---enables autocomplete for opts
+    ---@module "auto-session"
+    ---@type AutoSession.Config
     opts = {
-      autoload = true,
-      use_git_branch = true,
-    },
-    config = function(_,opts)
-      require"persisted".setup(opts)
-    end,
+      suppressed_dirs = { '~/', '~/Downloads', '/' },
+      -- log_level = 'debug',
+    }
   }
 
 }
