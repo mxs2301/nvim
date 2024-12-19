@@ -104,10 +104,9 @@ return {
 
           { "<leader>bf",  ":bd!<cr>",                             desc = "Buffer kill" },
           { "<leader>bs",  group = "Sessions" },
-          { "<leader>bss", function() vim.cmd.SessionSelect() end, desc = "Search for specific Session" },
+          { "<leader>bss", function() vim.cmd.SessionSearch() end, desc = "Search for specific Session" },
           { "<leader>bsd", function() vim.cmd.SessionDelete() end, desc = "Delete current Session" },
           { "<leader>bsu", function() vim.cmd.SessionSave() end,   desc = "Update Session entry" },
-          { "<leader>bsn", function() vim.cmd.SessionStart() end,  desc = "Start new Session" }
         },
 
         {
