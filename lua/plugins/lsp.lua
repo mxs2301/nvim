@@ -117,6 +117,25 @@ return {
           }
         end,
 
+        ["harper_ls"] = function()
+          capabilities = require "blink.cmp".get_lsp_capabilities(),
+              require "lspconfig"["harper_ls"].setup({
+                capabilities = capabilities,
+                filetypes = {
+                  "markdown", "latex", "tex"
+                }
+              })
+        end,
+
+        ["typos_lsp"] = function()
+          require "lspconfig"["typos_lsp"].setup({
+            capabilities = require "blink.cmp".get_lsp_capabilities(),
+            filetypes = {
+              "markdown", "latex", "tex"
+            }
+          })
+        end,
+
 
         ["clangd"] = function()
           require("lspconfig")["clangd"].setup({
