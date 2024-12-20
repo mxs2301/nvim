@@ -4,17 +4,21 @@ return {
     'saghen/blink.compat',
     version = '*',
     lazy = true,
-    opts = {}
+    opts = {
+      impersonate_nvim_cmp = true,
+    },
+    config = true,
   },
 
   {
     'saghen/blink.cmp',
     version = 'v0.*',
+    build = "rustup default nightly && cargo build --release",
     -- !Important! Make sure you're using the latest release of LuaSnip
     -- `main` does not work at the moment
     dependencies = { { 'L3MON4D3/LuaSnip', version = 'v2.*' },
       { 'rafamadriz/friendly-snippets' },
-      {"ray-x/cmp-sql"},
+      { "ray-x/cmp-sql" },
     },
     opts = {
       snippets = {
@@ -30,22 +34,25 @@ return {
       },
       sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer' },
+        providers = {
+          sql = {
+            name = 'sql',
+            module = 'blink.compat.source',
+            score_offset = -3,
+          }
+        },
         cmdline = {},
-        optionals = {"sql"}
       },
-      providers = {
-        sql = {
-          name = 'sql',
-          module = 'blink.compat.source',
-          score_offset = -3,
-        }
-      },
-      -- enabled = function() return vim.bo.buftype ~= "prompt" and vim.b.completion ~= false end,
+      enabled = function() return vim.bo.buftype ~= "prompt" and vim.b.completion ~= false end,
       signature = {
         enabled = true
       },
-      ghost_text = {
-        enabled = true,
+      completion = {
+
+        ghost_text = {
+          enabled = true,
+        }
+
       },
       keymap = {
         ['<S-Tab>'] = { 'select_prev', 'fallback' },
@@ -56,7 +63,7 @@ return {
         ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
         ['<C-e>'] = { 'hide', 'fallback' },
       },
-      opts_extend = { "sources.default", "sources.cmdline", "sources.optionals" }
-    }
+    },
+    opts_extend = { "sources.default", "sources.providers" }
   }
 }
