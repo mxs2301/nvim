@@ -64,4 +64,11 @@ return {
     },
   },
 
+  {
+    'arminveres/md-pdf.nvim',
+    branch = 'main',
+    lazy = true,
+    opts = {}
+  }
+
 }
