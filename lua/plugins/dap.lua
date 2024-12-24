@@ -45,7 +45,7 @@ return {
 
       dap.adapters.lldb = {
         type = 'executable',
-        command = '/usr/bin/lldb-dap-19',
+        command = '/usr/bin/lldb-dap',
         name = 'lldb'
       }
       dap.adapters.gdb = {
