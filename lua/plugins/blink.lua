@@ -19,6 +19,7 @@ return {
     dependencies = { { 'L3MON4D3/LuaSnip', version = 'v2.*' },
       { 'rafamadriz/friendly-snippets' },
       { "ray-x/cmp-sql" },
+      { "Saecki/crates.nvim", }
     },
     opts = {
       snippets = {
@@ -43,19 +44,28 @@ return {
       --   end
       -- },
       sources = {
-        default = { 'lsp', 'path', 'luasnip', 'buffer' },
+        default = { 'lsp', 'path', 'luasnip', 'buffer', 'crates', 'sql' },
         providers = {
           sql = {
             name = 'sql',
+            enabled = false,
+            async = true,
             module = 'blink.compat.source',
             score_offset = -3,
-          }
+          },
+          crates = {
+            enabled = false,
+            async = true,
+            name = 'crates',
+            module = 'blink.compat.source'
+          },
+
         },
         cmdline = {},
       },
       enabled = function() return vim.bo.buftype ~= "prompt" and vim.b.completion ~= false end,
       signature = {
-        enabled = true
+        enabled = false
       },
       completion = {
 
