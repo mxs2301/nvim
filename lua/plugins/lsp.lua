@@ -72,6 +72,22 @@ return {
   },
 
   {
+    "SmiteshP/nvim-navbuddy",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "SmiteshP/nvim-navic",
+      "MunifTanjim/nui.nvim",
+      "numToStr/Comment.nvim",
+    },
+    opts = {
+      lsp = {
+        auto_attach = true,
+      }
+    }
+  },
+
+
+  {
     "williamboman/mason.nvim",
     config = function()
       require("mason").setup()
@@ -91,10 +107,11 @@ return {
           require("lspconfig")[server_name].setup({
             capabilities = require "blink.cmp".get_lsp_capabilities(),
             -- capabilities = require "cmp_nvim_lsp".default_capabilities(),
-            on_attach = function()
+            on_attach = function(client, bufnr)
               if vim.lsp.inlay_hint then
                 vim.lsp.inlay_hint.enable(true, { 0 })
               end
+              require "nvim-navbuddy".attach(client, bufnr)
             end
           })
         end,
@@ -141,9 +158,10 @@ return {
           require("lspconfig")["clangd"].setup({
             capabilities = require "blink.cmp".get_lsp_capabilities(),
             -- capabilities = require("cmp_nvim_lsp").default_capabilities(),
-            on_attach = function()
+            on_attach = function(client, bufnr)
               require("clangd_extensions.inlay_hints").setup_autocmd()
               require("clangd_extensions.inlay_hints").set_inlay_hints()
+              require("nvim-navbuddy").attach(client, bufnr)
             end,
           })
         end,
