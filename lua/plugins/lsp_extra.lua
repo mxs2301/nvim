@@ -7,29 +7,12 @@ return {
     },
     config = function()
       local null_ls = require("null-ls")
-
-      null_ls.setup({
+      local opts = {
         sources = {
-        },
-      })
+        }
+      }
+      null_ls.setup(opts)
     end,
-  },
-
-  {
-    "zeioth/none-ls-autoload.nvim",
-    enabled = false,
-    event = "BufEnter",
-    dependencies = {
-      "williamboman/mason.nvim",
-      "zeioth/none-ls-external-sources.nvim",
-    },
-
-    opts = {
-      external_sources = {
-        'none-ls-external-sources.diagnostics.cpplint'
-
-      },
-    },
   },
 
   {

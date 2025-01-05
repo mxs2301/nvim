@@ -13,16 +13,6 @@ return {
       require("workspaces").setup(opts)
     end,
   },
-
-  --{
-  --  "jedrzejboczar/exrc.nvim",
-  --  dependencies = { "neovim/nvim-lspconfig" }, -- (optional)
-  --  config = function()
-  --    local opts = {}
-  --    require("exrc").setup(opts)
-  --  end,
-  --},
-
   {
     'brymer-meneses/project-config.nvim',
     dependencies = {
