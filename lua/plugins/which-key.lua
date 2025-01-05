@@ -157,7 +157,6 @@ return {
         {
           mode = "n",
           { "<leader>g",  group = "Git" },
-          { "<leader>gc", ":Fugit2<cr>",                   desc = "Open Git Client" },
           { "<leader>gl", ":LazyGit<cr>",                  desc = "Open LazyGit" },
           { "<leader>gn", function() vim.cmd.Neogit() end, desc = "Open Neogit" },
         },
