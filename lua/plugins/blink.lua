@@ -19,7 +19,8 @@ return {
     dependencies = { { 'L3MON4D3/LuaSnip', version = 'v2.*' },
       { 'rafamadriz/friendly-snippets' },
       { "ray-x/cmp-sql" },
-      { "Saecki/crates.nvim", }
+      { "Saecki/crates.nvim", },
+      { "micangl/cmp-vimtex", }
     },
     opts = {
       snippets = {
@@ -44,7 +45,7 @@ return {
       --   end
       -- },
       sources = {
-        default = { 'lsp', 'path', 'luasnip', 'buffer', 'crates', 'sql' },
+        default = { 'lsp', 'path', 'luasnip', 'buffer', 'crates', 'sql', 'vimtex' },
         providers = {
           sql = {
             name = 'sql',
@@ -54,11 +55,17 @@ return {
             score_offset = -3,
           },
           crates = {
-            enabled = false,
+            enabled = true,
             async = true,
             name = 'crates',
             module = 'blink.compat.source'
           },
+          vimtex = {
+            name = 'vimtex',
+            async = true,
+            enabled = true,
+            module = 'blink.compat.source'
+          }
 
         },
         cmdline = {},
