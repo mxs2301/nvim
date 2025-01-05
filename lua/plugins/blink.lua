@@ -33,6 +33,7 @@ return {
         end,
         jump = function(direction) require "luasnip".jump(direction) end,
       },
+      -- If luasnip is not working, use native snippets
       -- snippets = {
       --   expand = function(snippet)
       --     vim.snippet.expand(snippet)
@@ -55,7 +56,7 @@ return {
             score_offset = -3,
           },
           crates = {
-            enabled = true,
+            enabled = false,
             async = true,
             name = 'crates',
             module = 'blink.compat.source'
@@ -72,7 +73,7 @@ return {
       },
       enabled = function() return vim.bo.buftype ~= "prompt" and vim.b.completion ~= false end,
       signature = {
-        enabled = false
+        enabled = true
       },
       completion = {
 

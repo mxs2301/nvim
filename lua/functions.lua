@@ -20,6 +20,7 @@ function M.get_current_buffer()
   return x
 end
 
+-- Function to toggle the linenumber
 function M.toggle_linenumber()
   vim.o.relativenumber = not vim.o.relativenumber
 end

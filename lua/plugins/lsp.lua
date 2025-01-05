@@ -87,86 +87,7 @@ return {
   },
 
 
-  {
-    "williamboman/mason.nvim",
-    enabled = false,
-    config = function()
-      require("mason").setup()
-    end,
-  },
 
-  {
-    "williamboman/mason-lspconfig.nvim",
-    enabled = false,
-    config = function()
-      local opts = {}
-      require("mason-lspconfig").setup(opts)
-
-      require("mason-lspconfig").setup_handlers({
-
-
-        function(server_name)
-          require("lspconfig")[server_name].setup({
-            capabilities = require "blink.cmp".get_lsp_capabilities(),
-            -- capabilities = require "cmp_nvim_lsp".default_capabilities(),
-            on_attach = function(client, bufnr)
-              vim.lsp.inlay_hint.enable(true, { 0 })
-              require "nvim-navbuddy".attach(client, bufnr)
-            end
-          })
-        end,
-        ["rust_analyzer"] = function() end,
-
-        ["lua_ls"] = function()
-          require "lspconfig"["lua_ls"].setup {
-            capabilities = require "blink.cmp".get_lsp_capabilities(),
-            on_attach = function(client, bufnr)
-              nav(client, bufnr)
-            end,
-            settings = {
-              Lua = {
-                hint = {
-                  enable = true
-                },
-              }
-            }
-          }
-        end,
-
-        ["harper_ls"] = function()
-          capabilities = require "blink.cmp".get_lsp_capabilities(),
-              require "lspconfig"["harper_ls"].setup({
-                capabilities = capabilities,
-                filetypes = {
-                  "markdown", "latex", "tex"
-                }
-              })
-        end,
-
-        ["typos_lsp"] = function()
-          require "lspconfig"["typos_lsp"].setup({
-            capabilities = require "blink.cmp".get_lsp_capabilities(),
-            filetypes = {
-              "markdown", "latex", "tex"
-            }
-          })
-        end,
-
-
-        ["clangd"] = function()
-          require("lspconfig")["clangd"].setup({
-            capabilities = require "blink.cmp".get_lsp_capabilities(),
-            -- capabilities = require("cmp_nvim_lsp").default_capabilities(),
-            on_attach = function(client, bufnr)
-              require("clangd_extensions.inlay_hints").setup_autocmd()
-              require("clangd_extensions.inlay_hints").set_inlay_hints()
-              require("nvim-navbuddy").attach(client, bufnr)
-            end,
-          })
-        end,
-      })
-    end,
-  },
 
   {
 
@@ -180,12 +101,13 @@ return {
       local blink = require "blink.cmp".get_lsp_capabilities()
       local nav = require "nvim-navbuddy".attach
 
-      --- Set up inlay_hints
+      --- Set up inlay_hints for servers that support it
       local function inlay_hint()
         if vim.lsp.inlay_hint then
           vim.lsp.inlay_hint.enable(true, { 0 })
         end
       end
+      --- Setup function to see if document symbols are supported by the Server
       local function navbuddy(client, bufnr)
         if client.server_capabilities.documentSymbolProvider then
           nav(client, bufnr)
@@ -195,8 +117,11 @@ return {
       end
 
       -- Set basic server
-      local server = { "texlab" }
+      -- Write list of servers
+      -- The list should include servers which work without special settings
+      local server = {}
 
+      -- Setup of basic server, which need no special settings
       for index, name in ipairs(server) do
         lsp[name].setup({
           capabilities = require "blink.cmp".get_lsp_capabilities(),
@@ -210,6 +135,7 @@ return {
 
 
       -- Setup of special servers
+      -- Lua LS as an example on how it could look like
       lsp["lua_ls"].setup {
         capabilities = blink,
         on_attach = function(client, bufnr)
@@ -224,52 +150,6 @@ return {
           }
         }
       }
-
-      lsp["clangd"].setup {
-        capabilities = blink,
-        on_attach = function(client, bufnr)
-          require("clangd_extensions.inlay_hints").setup_autocmd()
-          require("clangd_extensions.inlay_hints").set_inlay_hints()
-          navbuddy(client, bufnr)
-        end
-      }
-
-      lsp["typos_lsp"].setup {
-        capabilities = blink,
-        filetypes = {
-          "markdown", "latex", "tex"
-        },
-        on_attach = function(client, bufnr)
-          inlay_hint()
-          navbuddy(client, bufnr)
-        end
-      }
-
-      lsp["harper_ls"].setup {
-        capabilities = blink,
-        filetypes = {
-          "markdown", "latex", "tex"
-        },
-        on_attach = function(client, bufnr)
-          inlay_hint()
-          navbuddy(client, bufnr)
-        end
-      }
-
-
-      -- Set special servers
-      lsp["sourcekit"].setup({
-        on_attach = function(client, bufnr)
-          navbuddy(client, bufnr)
-          inlay_hint()
-        end,
-        capabilities = require "blink.cmp".get_lsp_capabilities(),
-        filetypes = {
-          "swift", "objc", "objcpp"
-        }
-      })
-
-
 
 
       vim.diagnostic.config({
