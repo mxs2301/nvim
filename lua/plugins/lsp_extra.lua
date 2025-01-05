@@ -17,6 +17,7 @@ return {
 
   {
     "zeioth/none-ls-autoload.nvim",
+    enabled = false,
     event = "BufEnter",
     dependencies = {
       "williamboman/mason.nvim",

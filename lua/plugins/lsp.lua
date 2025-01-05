@@ -89,6 +89,7 @@ return {
 
   {
     "williamboman/mason.nvim",
+    enabled = false,
     config = function()
       require("mason").setup()
     end,
@@ -96,6 +97,7 @@ return {
 
   {
     "williamboman/mason-lspconfig.nvim",
+    enabled = false,
     config = function()
       local opts = {}
       require("mason-lspconfig").setup(opts)
@@ -108,9 +110,7 @@ return {
             capabilities = require "blink.cmp".get_lsp_capabilities(),
             -- capabilities = require "cmp_nvim_lsp".default_capabilities(),
             on_attach = function(client, bufnr)
-              if vim.lsp.inlay_hint then
-                vim.lsp.inlay_hint.enable(true, { 0 })
-              end
+              vim.lsp.inlay_hint.enable(true, { 0 })
               require "nvim-navbuddy".attach(client, bufnr)
             end
           })
@@ -120,9 +120,8 @@ return {
         ["lua_ls"] = function()
           require "lspconfig"["lua_ls"].setup {
             capabilities = require "blink.cmp".get_lsp_capabilities(),
-            -- capabilities = require "cmp_nvim_lsp".default_capabilities(),
-            on_attach = function()
-              vim.lsp.inlay_hint.enable(true, { 0 })
+            on_attach = function(client, bufnr)
+              nav(client, bufnr)
             end,
             settings = {
               Lua = {
@@ -177,15 +176,101 @@ return {
     },
 
     config = function()
-      -- Set icons
-      require "lspconfig"["sourcekit"].setup({
+      local lsp = require "lspconfig"
+      local blink = require "blink.cmp".get_lsp_capabilities()
+      local nav = require "nvim-navbuddy".attach
 
+      --- Set up inlay_hints
+      local function inlay_hint()
+        if vim.lsp.inlay_hint then
+          vim.lsp.inlay_hint.enable(true, { 0 })
+        end
+      end
+      local function navbuddy(client, bufnr)
+        if client.server_capabilities.documentSymbolProvider then
+          nav(client, bufnr)
+        else
+          print("No")
+        end
+      end
+
+      -- Set basic server
+      local server = { "texlab" }
+
+      for index, name in ipairs(server) do
+        lsp[name].setup({
+          capabilities = require "blink.cmp".get_lsp_capabilities(),
+          on_attach = function(client, bufnr)
+            inlay_hint()
+            navbuddy(client, bufnr)
+          end,
+        })
+      end
+
+
+
+      -- Setup of special servers
+      lsp["lua_ls"].setup {
+        capabilities = blink,
+        on_attach = function(client, bufnr)
+          navbuddy(client, bufnr)
+          inlay_hint()
+        end,
+        settings = {
+          Lua = {
+            hint = {
+              enable = true
+            },
+          }
+        }
+      }
+
+      lsp["clangd"].setup {
+        capabilities = blink,
+        on_attach = function(client, bufnr)
+          require("clangd_extensions.inlay_hints").setup_autocmd()
+          require("clangd_extensions.inlay_hints").set_inlay_hints()
+          navbuddy(client, bufnr)
+        end
+      }
+
+      lsp["typos_lsp"].setup {
+        capabilities = blink,
+        filetypes = {
+          "markdown", "latex", "tex"
+        },
+        on_attach = function(client, bufnr)
+          inlay_hint()
+          navbuddy(client, bufnr)
+        end
+      }
+
+      lsp["harper_ls"].setup {
+        capabilities = blink,
+        filetypes = {
+          "markdown", "latex", "tex"
+        },
+        on_attach = function(client, bufnr)
+          inlay_hint()
+          navbuddy(client, bufnr)
+        end
+      }
+
+
+      -- Set special servers
+      lsp["sourcekit"].setup({
+        on_attach = function(client, bufnr)
+          navbuddy(client, bufnr)
+          inlay_hint()
+        end,
         capabilities = require "blink.cmp".get_lsp_capabilities(),
-        -- capabilities = require("cmp_nvim_lsp").default_capabilities(),
         filetypes = {
           "swift", "objc", "objcpp"
         }
       })
+
+
+
 
       vim.diagnostic.config({
         signs = {
