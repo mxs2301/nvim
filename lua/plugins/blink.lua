@@ -79,6 +79,19 @@ return {
 
         ghost_text = {
           enabled = true,
+        },
+
+        menu = {
+          draw = {
+            columns = { { "kind_icon" }, { "label", gap = 1 } },
+            components = {
+              label = {
+                text = require "colorful-menu".blink_components_text,
+                highlight = require "colorful-menu".blink_components_highlight,
+              },
+            },
+
+          }
         }
 
       },
